@@ -1,2 +1,3 @@
-# socialApp-back-end
+# socialApp
+
 nodejs -express- mongo database
