@@ -1,0 +1,26 @@
+// Converted from .js to .ts — automated lightweight conversion
+// NOTE: manual type annotations and refactoring recommended.
+
+// handle catch error
+let stackvar ;
+export const errorHandling = (Api) => {
+  return (req, res, next) => {
+    Api(req, res, next).catch((err) => {
+      // res.json({message:'catch error',err})
+      next(new Error(err.message));
+      stackvar = err.stack;
+    });
+  };
+};
+
+// handle global error
+export const failResHandle = (err, req, res, next) => {
+  if (err) {
+    return res.status(err["cause"] || 500).json({
+      message: "global error",
+      errmsg: err.message,
+
+      stackvar:stackvar
+    });
+  }
+};
